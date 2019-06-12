@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_181627) do
+ActiveRecord::Schema.define(version: 2019_06_12_230534) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_181627) do
     t.string "username"
     t.string "student_name"
     t.integer "student_grade"
-    t.string "subject"
     t.string "first_name"
     t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
