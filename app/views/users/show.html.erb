@@ -1,0 +1,10 @@
+<h1>Your Profile</h1>
+<p> Username: <%= @user.username %> </p>
+<p> Name: <%= @user.first_name %> <%= @user.last_name %> </p>
+<p> Student Name: <%= @user.student_name %> </p>
+<p> Student Grade: <%= @user.student_grade %> </p>
+<p> Subject for Tutoring: <%= @user.subject %> </p>
+<p> Contact Info: <%= @user.email %> </p>
+
+
+<%= link_to "Edit Account Settings", edit_user_registration_path %>

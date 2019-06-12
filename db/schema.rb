@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_174351) do
+ActiveRecord::Schema.define(version: 2019_06_12_181627) do
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "tutor_id"
+  end
+
+  create_table "tutors", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "subject"
+    t.text "bio"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
