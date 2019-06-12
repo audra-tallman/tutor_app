@@ -14,18 +14,28 @@
   </div>
 
   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
     <%= f.label :student_name %><br />
-    <%= f.email_field :student_name %>
+    <%= f.text_field :student_name %>
   </div>
 
   <div class="field">
     <%= f.label :student_grade %><br />
-    <%= f.email_field :student_grade %>
+    <%= f.number_field :student_grade %>
   </div>
 
   <div class="field">
     <%= f.label :subject %><br />
-    <%= f.email_field :subject %>
+    <%= f.text_field :subject %>
   </div>
 
   <div class="field">
