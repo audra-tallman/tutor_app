@@ -1,7 +1,9 @@
+require 'pry'
 class TutorsController < ApplicationController
 
   def index
     @tutors = Tutor.all
+    binding.pry
   end
 
   def new

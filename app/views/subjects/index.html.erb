@@ -1,7 +1,7 @@
 <h1> Subjects for Tutoring </h1>
 <p> Select a subject that your student needs help with to see what tutors are available. </p>
-<ul>
-  <% @subjects.each do |subject| %>
-    <li><%= link_to "#{subject.name}", subject_path(subject) %></li>
+<<ul>
+  <% @tutors.each do |tutor| %>
+    <li> <%= link_to "#{tutor.subject}", tutor_path(tutor) %> </li>
   <% end %>
 </ul>

@@ -1,6 +1,7 @@
 <h1> Tutors </h1>
+<p> Click on a name to view that tutor's profile. </p>
 <ul>
   <% @tutors.each do |tutor| %>
-    <li><%= link_to "View #{tutor.name}'s Profile'", tutor_path(tutor) %></li>
+    <li><%= link_to "#{tutor.name}", tutor_path(tutor) %></li>
   <% end %>
 </ul>
