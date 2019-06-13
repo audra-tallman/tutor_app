@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
 
-before_action :require_login
-
+  def index
+    @subjects = Subject.all
+  end
 
 end

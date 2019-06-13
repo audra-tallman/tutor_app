@@ -1,8 +1,5 @@
 class TutorsController < ApplicationController
 
-  before_action :find_tutor, only: [:show, :edit, :update]
-  before_action :admin_only, except: [:index, :show]
-
   def index
     @tutors = Tutor.all
   end
@@ -37,10 +34,6 @@ class TutorsController < ApplicationController
   end
 
   private
-
-  def find_tutor
-    @tutor = Tutor.find_by(params[:id])
-  end
 
   def tutor_params
     params.require(:tutor).permit(:name, :email, :subject, :bio)
