@@ -1,0 +1,6 @@
+<ul>
+<% tutors.each do |tutor| %>
+  <li><%= link_to "Show #{tutor.name}", tutor_path(tutor) %></li>
+<% end %>
+</ul>
+<%= link_to "New Tutor", new_tutor_path %>
