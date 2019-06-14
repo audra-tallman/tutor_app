@@ -1,7 +1,7 @@
 require 'pry'
 class TutorsController < ApplicationController
 
-  before_action :find_attraction, only: [:show, :edit, :update]
+  before_action :find_tutor, only: [:show, :edit, :update]
   before_action :admin_only, except: [:index, :show]
 
   def index
@@ -14,8 +14,8 @@ class TutorsController < ApplicationController
 
   def create
     @tutor = Tutor.create(tutor_params)
-    if @tutor
-      redirect_to_tutor_path(@tutor)
+    if @tutor.save
+      redirect_to tutors_path
     else
       render 'new'
     end
