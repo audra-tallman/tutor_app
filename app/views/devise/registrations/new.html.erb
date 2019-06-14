@@ -24,16 +24,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :student_name %><br />
-    <%= f.text_field :student_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :student_grade %><br />
-    <%= f.number_field :student_grade %>
-  </div>
-
-  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -46,7 +36,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-
+  <div class="field">
+    <%= f.label :admin, "Admin?" %>
+    <%= f.check_box :admin %><br>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

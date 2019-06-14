@@ -1,0 +1,10 @@
+<h1>Users</h1>
+<% if current_user.admin %>
+  <%= render partial: 'admin', locals: {users: @users} %>
+<% else %>
+  <ul>
+  <% @users.each do |user| %>
+    <li><%= link_to "#{user.username}" , user_path(user) %></li>
+  <% end %>
+  </ul>
+<% end %>

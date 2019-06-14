@@ -1,12 +1,15 @@
 require 'pry'
 class TutorsController < ApplicationController
 
+  before_action :find_attraction, only: [:show, :edit, :update]
+  before_action :admin_only, except: [:index, :show]
+
   def index
     @tutors = Tutor.all
   end
 
   def new
-    @tutors = Tutor.new
+    @tutor = Tutor.new
   end
 
   def create
@@ -19,7 +22,6 @@ class TutorsController < ApplicationController
   end
 
   def show
-    @tutor = Tutor.find_by(id: params[:id])
   end
 
   def edit

@@ -8,8 +8,8 @@ has_many :subjects
 has_many :tutors, through: :subjects
 
 validates :username, uniqueness: true
-validates :student_name, presence: true
-validates :student_grade, presence: true
+validates :first_name, presence: true
+validates :last_name, presence: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
