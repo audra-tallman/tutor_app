@@ -7,4 +7,8 @@ class User < ApplicationRecord
 has_many :subjects
 has_many :tutors, through: :subjects
 
+validates :username, uniqueness: true
+validates :student_name, presence: true
+validates :student_grade, presence: true
+
 end

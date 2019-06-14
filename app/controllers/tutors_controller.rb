@@ -3,7 +3,6 @@ class TutorsController < ApplicationController
 
   def index
     @tutors = Tutor.all
-    binding.pry
   end
 
   def new
@@ -20,7 +19,7 @@ class TutorsController < ApplicationController
   end
 
   def show
-    @tutor = Tutor.find_by(params[:id])
+    @tutor = Tutor.find_by(id: params[:id])
   end
 
   def edit
@@ -36,6 +35,10 @@ class TutorsController < ApplicationController
   end
 
   private
+
+  def find_tutor
+    @tutor = Tutor.find_by(id: params[:id])
+  end
 
   def tutor_params
     params.require(:tutor).permit(:name, :email, :subject, :bio)

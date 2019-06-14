@@ -5,3 +5,13 @@
 <p> <%= @tutor.bio %> </p>
 
 <h4> Contact: <%= @tutor.email %> </h4>
+
+<%= form_tag("/subjects", method: "post") do %>
+    <%= hidden_field_tag :tutor_id, @tutor.id %>
+    <%= button_tag "Request Tutoring" %>
+<% end %>
+<br>
+<br>
+
+<%= link_to "View Subjects", subjects_path %>
+<%= link_to "View Tutors", tutors_path %>

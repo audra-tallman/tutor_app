@@ -1,1 +1,7 @@
 <h1> Welcome! </h1>
+
+<% if user_signed_in? %>
+<h3> Hello, <%= current_user.first_name %>! What would you like to do? </h3>
+  <%= link_to "View Subjects", subjects_path %>
+  <%= link_to "View Tutors", tutors_path %>
+<% end %>
