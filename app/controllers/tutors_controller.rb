@@ -6,6 +6,7 @@ class TutorsController < ApplicationController
 
   def index
     @tutors = Tutor.all
+    @subject_tutor = Tutor.subject(params[:name])
   end
 
   def new
@@ -22,6 +23,8 @@ class TutorsController < ApplicationController
   end
 
   def show
+    @tutor= Tutor.find(params[:id])
+    Tutor.subject(params[:name])
   end
 
   def edit
@@ -34,6 +37,12 @@ class TutorsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @tutor = Tutor.find(params[:id])
+    @tutor.destroy
+    redirect_to tutors_path
   end
 
   private

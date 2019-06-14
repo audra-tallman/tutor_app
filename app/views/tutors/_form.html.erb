@@ -1,3 +1,13 @@
+<% if @tutor.errors.any? %>
+  <h3>Please correct the following errors:</h3>
+  <ul>
+    <% @tutor.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_for @tutor do |f| %>
 
   <%= f.label :name %> <br>

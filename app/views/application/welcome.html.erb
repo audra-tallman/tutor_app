@@ -6,3 +6,8 @@
   <%= link_to "View Subjects", subjects_path %>
   <%= link_to "View Tutors", tutors_path %>
 <% end %>
+<% if user_signed_in? %>
+<% if current_user.admin %>
+  <%= link_to "View Current Users", users_path %>
+<% end %>
+<% end %>

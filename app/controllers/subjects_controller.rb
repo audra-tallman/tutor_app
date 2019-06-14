@@ -7,13 +7,8 @@ class SubjectsController < ApplicationController
        @subjects = User.find(params[:user_id]).subjects
      else
        @subjects = Subject.all
-     end
+    end
    end
-
-  # def index
-  #   @subjects = Subject.all
-  #   @tutors = Tutor.all
-  # end
 
   def create
     subject = Subject.create(user_id: current_user.id, tutor_id: params[:tutor_id])

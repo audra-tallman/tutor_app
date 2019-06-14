@@ -4,9 +4,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def create
     user = User.create(user_params)
-    if user.valid?
+    if user.save
       redirect_to user_path(user)
     else
       render :new
@@ -17,10 +21,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to tutors_path
+  end
+
   private
 
   def user_params
-      params.require(:user).permit(:username, :first_name, :last_name, :student_name, :student_grade, :email, :password, :admin)
+      params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :admin, :provider, :uid)
   end
 
 end
