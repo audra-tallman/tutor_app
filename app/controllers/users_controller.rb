@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.scoped
+    @users = User.all
   end
 
   def create

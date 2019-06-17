@@ -1,6 +1,7 @@
 <h1> Welcome to the Tutoring App! </h1>
 <h3> A place where you can find tutoring help for your student in a variety of school subjects. </h3>
 
+<% if user_signed_in? %>
 <div> <h2> Subject Areas: </h2>
   <ul>
     <li><%= link_to "English", subject_path("English") %></li>
@@ -13,14 +14,13 @@
     <li><%= link_to "Technology", subject_path("Technology") %></li>
   </ul>
 </div>
+<% end %>
 
 <% if user_signed_in? %>
 <h3> Hello, <%= current_user.first_name %>! What would you like to do? </h3>
-  <%= link_to "View Your Subjects", subjects_path %>
-  <%= link_to "View Your Tutors", tutors_path %>
+  <p><%= link_to "View Your Subjects", subjects_path %></p>
 <% end %>
 <% if user_signed_in? && current_user.admin %>
-  <%= link_to "View Current Users", users_path %>
-  <%= link_to "View All Subjects", subjects_path %>
-  <%= link_to "View All Tutors", tutors_path %>
+  <p><%= link_to "View All Tutors", tutors_path %></p>
+  <p><%= link_to "View Current Users", users_path %></p>
 <% end %>

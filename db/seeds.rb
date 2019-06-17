@@ -18,9 +18,31 @@ DATA = {
     ["Obi-Wan Kenobi", "aka.ben@example.com", "Science", "Jedi master to legends."],
     ["Han Solo", "solo@example.com", "Geography", "Smuggler turned hero."],
     ["C3P0", "golden@example.com", "Math", "I overanalyze everything."],
-    ["Yoda", "yoda@example.com", "English", "Good at language am I"]
-  ]
-}
+    ["Yoda", "yoda@example.com", "English", "Good at language I am"]
+  ],
+  :subject_keys =>
+    ["name", "user_id", "tutor_id"],
+  :subjects => [
+    ["History", 1, 1],
+    ["Government", 1, 2],
+    ["Technology", 1, 3],
+    ["Foreign Languages", 1, 4],
+    ["Science", 1, 5],
+    ["Geography", 1, 6],
+    ["Math", 1, 7],
+    ["English", 1, 8]
+    ]
+  }
+
+def make_subjects
+  DATA[:subjects].each do |subject|
+    new_subject = Subject.new
+    subject.each_with_index do |attribute, i|
+      new_subject.send(DATA[:subject_keys][i]+"=", attribute)
+    end
+    new_subject.save
+  end
+end
 
 def make_tutors
   DATA[:tutors].each do |tutor|
@@ -33,3 +55,4 @@ def make_tutors
 end
 
 make_tutors
+make_subjects

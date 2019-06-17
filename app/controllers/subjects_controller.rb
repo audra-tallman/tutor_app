@@ -1,5 +1,6 @@
 require 'pry'
 class SubjectsController < ApplicationController
+scope :max_subjects
 
   def index
     @subjects = current_user.subjects
