@@ -5,7 +5,6 @@ ruby '2.6.1'
 
 gem 'devise'
 gem 'pry'
-gem 'omniauth'
 gem 'omniauth-github'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

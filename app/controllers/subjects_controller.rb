@@ -2,17 +2,13 @@ require 'pry'
 class SubjectsController < ApplicationController
 
   def index
-    @tutors = Tutor.all
-     if params[:user_id]
-       @subjects = User.find(params[:user_id]).subjects
-     else
-       @subjects = Subject.all
-    end
+    @tutor = Tutor.all
+    @subjects = Subject.where("user_id = ?", params[:user_id])
    end
 
   def create
-    subject = Subject.create(user_id: current_user.id, tutor_id: params[:tutor_id])
-    redirect_to root_path
+    @subject = Subject.create(user_id: current_user.id, tutor_id: params[:tutor_id], name: params[:tutor_subject])
+    redirect_to user_subjects_path(current_user)
   end
 
 

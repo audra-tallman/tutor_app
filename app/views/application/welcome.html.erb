@@ -1,13 +1,26 @@
 <h1> Welcome to the Tutoring App! </h1>
 <h3> A place where you can find tutoring help for your student in a variety of school subjects. </h3>
 
+<div> <h2> Subject Areas: </h2>
+  <ul>
+    <li><%= link_to "English", tutors_path(where: @tutor.subject("English")) %></li>
+    <li><%= link_to "Foreign Languages" tutors_path(where: @tutor.subject("Foreign Languages")) %></li>
+    <li><%= link_to"Geography", tutors_path(@tutor.subject("Geography")) %></li>
+    <li><%= link_to "Government", tutors_path(@tutor.subject("Government")) %></li>
+    <li><%= link_to "History", tutors_path(@tutor.subject("History")) %></li>
+    <li><%= link_to "Math", tutors_path(@tutor.subject("Math")) %></li>
+    <li><%= link_to "Science", tutors_path(@tutor.subject("Science")) %></li>
+    <li><%= link_to "Technology", tutors_path(@tutor.subject("Technology")) %></li>
+  </ul>
+</div>
+
 <% if user_signed_in? %>
 <h3> Hello, <%= current_user.first_name %>! What would you like to do? </h3>
-  <%= link_to "View Subjects", subjects_path %>
-  <%= link_to "View Tutors", tutors_path %>
+  <%= link_to "View Your Subjects", subjects_path %>
+  <%= link_to "View Your Tutors", tutors_path %>
 <% end %>
-<% if user_signed_in? %>
-<% if current_user.admin %>
+<% if user_signed_in? && current_user.admin %>
   <%= link_to "View Current Users", users_path %>
-<% end %>
+  <%= link_to "View All Subjects", subjects_path %>
+  <%= link_to "View All Tutors", tutors_path %>
 <% end %>

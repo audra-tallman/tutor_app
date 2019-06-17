@@ -13,6 +13,7 @@
 <% else %>
   <%= form_tag("/subjects", method: "post") do %>
     <%= hidden_field_tag :tutor_id, @tutor.id %>
+    <%= hidden_field_tag :tutor_subject, @tutor.subject %>
     <%= button_tag "Request Tutoring" %>
   <% end %>
 <% end %>

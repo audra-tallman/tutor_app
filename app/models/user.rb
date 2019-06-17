@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+scope :admin, -> { where(admin: true) }
+
 has_many :subjects
 has_many :tutors, through: :subjects
 
@@ -17,6 +19,7 @@ has_many :tutors, through: :subjects
       binding.pry
     user.provider = auth.provider
     user.uid = auth.uid
+    user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
     end
   end

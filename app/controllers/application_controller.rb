@@ -10,6 +10,7 @@ helper_method  :admin_only
   end
 
   def welcome
+    @tutor = Tutor.all
   end
 
 end
