@@ -15,4 +15,10 @@ class SubjectsController < ApplicationController
     @subject_tutors = Tutor.subject(@subject_name)
   end
 
+  def destroy
+    @subject = Subject.find(params[:id])
+    @subject.destroy
+    redirect_to user_subjects_path
+  end
+
 end

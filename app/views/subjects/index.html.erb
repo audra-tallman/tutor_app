@@ -2,8 +2,13 @@
 
 <ul>
   <% @subjects.each do |subject| %>
-    <li> <%= "#{subject.name} - #{subject.tutor.name}" %> </li>
+    <li> <%= "#{subject.name} - #{subject.tutor.name}" %>
+      <%= form_tag("/subjects", :data => {:confirm => "Are you sure?", :method => "delete"}) do %>
+      <%= hidden_field_tag :subject_id, subject.id %>
+      <%= button_tag "Cancel Request" %></li>
+      <% end %>
   <% end %>
 </ul>
 
 <%= link_to "View Tutors", tutors_path %>
+<%= link_to "Back to Subjects", root_url %>
