@@ -3,14 +3,14 @@
 
 <div> <h2> Subject Areas: </h2>
   <ul>
-    <li><%= link_to "English", tutors_path(@tutors.subject("English")) %></li>
-    <li><%= link_to "Foreign Languages", tutors_path %></li>
-    <li><%= link_to"Geography", tutors_path %></li>
-    <li><%= link_to "Government", tutors_path %></li>
-    <li><%= link_to "History", tutors_path %></li>
-    <li><%= link_to "Math", tutors_path %></li>
-    <li><%= link_to "Science", tutors_path %></li>
-    <li><%= link_to "Technology", tutors_path %></li>
+    <li><%= link_to "English", subject_path("English") %></li>
+    <li><%= link_to "Foreign Languages", subject_path("Foreign Languages")%></li>
+    <li><%= link_to"Geography", subject_path("Geography") %></li>
+    <li><%= link_to "Government", subject_path("Government") %></li>
+    <li><%= link_to "History", subject_path("History") %></li>
+    <li><%= link_to "Math", subject_path("Math") %></li>
+    <li><%= link_to "Science", subject_path("Science") %></li>
+    <li><%= link_to "Technology", subject_path("Technology") %></li>
   </ul>
 </div>
 

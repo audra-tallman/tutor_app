@@ -1,5 +1,4 @@
 class Tutor < ApplicationRecord
-  scope :subject, -> (name) { where(name: name) }
 
 has_many :subjects
 has_many :users, through: :subjects

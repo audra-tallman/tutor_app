@@ -1,0 +1,8 @@
+<h2> These are the tutors available for tutoring in...</h2>
+<h1><%= @subject_name %> </h1>
+
+<ul>
+  <% @subject_tutors.each do |tutor| %>
+    <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
+  <% end %>
+</ul>

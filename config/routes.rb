@@ -11,10 +11,10 @@ registrations: "registrations"}
   #   get 'signup', to: 'devise/registrations#new'
   # end
   resources :users
-  resources :subjects
+  resources :subjects, param: :name
   resources :tutors
   resources :users do
-    resources :subjects, only: [:show, :index]
+    resources :subjects, only: [:index]
   end
   # match '/users/:id',     to: 'users#show',       via: 'get'
 

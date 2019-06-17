@@ -2,8 +2,7 @@ require 'pry'
 class SubjectsController < ApplicationController
 
   def index
-    user = User.find(params[:user_id])
-    @subjects = user.subjects
+    @subjects = current_user.subjects
  end
 
   def create
@@ -11,5 +10,9 @@ class SubjectsController < ApplicationController
     redirect_to user_subjects_path(current_user)
   end
 
+  def show
+    @subject_name = subject_path.slice(10...)
+    @subject_tutors = Tutor.subject(@subject_name)
+  end
 
 end
