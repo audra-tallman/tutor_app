@@ -1,8 +1,8 @@
-<h1> Subjects for Tutoring </h1>
+<h1> Requested Subjects and Tutors: </h1>
 
 <ul>
-  <% Tutor.all.distinct.pluck(:subject).each do |subject| %>
-    <li> <%= "#{subject}" %> </li>
+  <% @subjects.each do |subject| %>
+    <li> <%= "#{subject.name} - #{subject.tutor.name}" %> </li>
   <% end %>
 </ul>
 
