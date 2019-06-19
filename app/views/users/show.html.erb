@@ -5,9 +5,7 @@
 
 <% if @user.admin %>
   <p>ADMIN</p>
-  <%= link_to "Create New User", new_user_path %>
 <% end %>
 
 <%= link_to "Edit Account Settings", edit_user_registration_path %>
-<%= link_to "View Subjects", user_subjects_path(current_user) %>
 <%= link_to "View Tutors", tutors_path %>

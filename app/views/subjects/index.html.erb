@@ -1,7 +1,7 @@
 <h1> Requested Subjects and Tutors: </h1>
 
 <ul>
-  <% @subjects.each do |subject| %>
+  <% @user_subjects.each do |subject| %>
     <li> <%= "#{subject.name} - #{subject.tutor.name}" %> </li>
       <%= link_to "Cancel Request", user_subject_path(@user_id, subject.id), method: :delete %>
     <% end %>

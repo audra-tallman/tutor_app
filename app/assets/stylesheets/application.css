@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+ .field_with_errors input[type='username']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='name']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='password']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='email']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='bio']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='gender']{
+   border: 1px solid red;
+ }
+
+ .field_with_errors input[type='subject']{
+   border: 1px solid red;
+ }

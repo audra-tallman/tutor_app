@@ -2,10 +2,14 @@ require 'pry'
 class SubjectsController < ApplicationController
 
   def index
-    # @user_subjects = current_user.subjects
-    @subjects = Subject.all
-    @user_id = current_user.id
-
+    if current_user.subjects !=[]
+      @user_subjects = current_user.subjects
+      @subjects = Subjects.all
+      @user_id = current_user.id
+    else
+      flash[:error] = "You need to sign up for a subject tutor before you can view your subjects."
+      redirect_to root_url
+    end
   end
 
   def create
