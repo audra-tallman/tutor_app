@@ -1,24 +1,19 @@
-# README
+# Tutor App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ A Rails application that allows a user to create an account and connect with Tutors for a variety of school subjects.
 
-Things you may want to cover:
+ ## Install Instructions:
+Clone the repo. Run rake db:migrate. Run rake db:seed. Run rails s. Go to localhost:3000/.
 
-* Ruby version
 
-* System dependencies
+ ## Contributor's Guide:
+Bug reports and pull requests are welcome on GitHub at https://github.com/audra-tallman/tutor_app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Configuration
+ ## License Information:
+This project is licensed under the MIT License
 
-* Database creation
+ ## Acknowledgements:
+Thank you to the following people who helped in developing and troubleshooting the code for this program.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Corinna Brock Moore
+- Katie Kage

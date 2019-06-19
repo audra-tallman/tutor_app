@@ -5,8 +5,13 @@ class TutorsController < ApplicationController
   before_action :admin_only, except: [:index, :show]
 
   def index
-    @tutors = Tutor.all
-    @subject_tutor = Tutor.subject(params[:name])
+    if params[:tutor]
+      methods = params[:tutor][:methods]
+      @tutors = Tutor.send_chain(methods)
+    else
+      @tutors = Tutor.all
+    # @subject_tutor = Tutor.subject(params[:name])
+    end
   end
 
   def new
@@ -52,7 +57,7 @@ class TutorsController < ApplicationController
   end
 
   def tutor_params
-    params.require(:tutor).permit(:name, :email, :subject, :bio)
+    params.require(:tutor).permit(:name, :email, :subject, :bio, :gender)
   end
 
 end

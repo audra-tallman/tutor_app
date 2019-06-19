@@ -9,4 +9,14 @@
   <% end %>
 </ul>
 <% end %>
-<%= link_to "View Subjects", root_url %>
+
+<p>View Tutors by Gender:</p>
+
+<%= form_tag(tutors_path, method: :get) do %>
+  Female <%= check_box_tag "tutor[methods][]", "female" %>
+  Male <%= check_box_tag "tutor[methods][]", "male"  %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<p><%= link_to "View Subjects", root_url %></p>
+<p><%= link_to "View All Tutors", tutors_path %></p>

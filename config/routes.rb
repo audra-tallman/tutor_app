@@ -10,11 +10,14 @@ registrations: "registrations"}
   # devise_scope :user do
   #   get 'signup', to: 'devise/registrations#new'
   # end
-  resources :users
-  resources :subjects, param: :name
+  resources :users, only: [:index, :show, :edit]
+  resources :subjects
+    # delete '/subjects(/:id)', to: 'subjects#destroy'
   resources :tutors
   resources :users do
-    resources :subjects, only: [:index]
+    resources :subjects
+      # only: [:index, :delete], param: :name
+      delete  =  'subjects#destroy'
   end
   # match '/users/:id',     to: 'users#show',       via: 'get'
 

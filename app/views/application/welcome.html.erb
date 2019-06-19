@@ -17,10 +17,10 @@
 <% end %>
 
 <% if user_signed_in? %>
-<h3> Hello, <%= current_user.first_name %>! What would you like to do? </h3>
-  <p><%= link_to "View Your Subjects", subjects_path %></p>
+<h3> Hello, <%= current_user.name %>! What would you like to do? </h3>
+  <p><%= link_to "View Your Subjects", user_subjects_path(@user), action: :index %></p>
+  <p><%= link_to "View All Tutors", tutors_path %></p>
 <% end %>
 <% if user_signed_in? && current_user.admin %>
-  <p><%= link_to "View All Tutors", tutors_path %></p>
   <p><%= link_to "View Current Users", users_path %></p>
 <% end %>

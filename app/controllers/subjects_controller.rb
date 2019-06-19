@@ -1,10 +1,12 @@
 require 'pry'
 class SubjectsController < ApplicationController
-scope :max_subjects
 
   def index
-    @subjects = current_user.subjects
- end
+    # @user_subjects = current_user.subjects
+    @subjects = Subject.all
+    @user_id = current_user.id
+
+  end
 
   def create
     @subject = Subject.create(user_id: current_user.id, tutor_id: params[:tutor_id], name: params[:tutor_subject])
@@ -17,8 +19,8 @@ scope :max_subjects
   end
 
   def destroy
-    @subject = Subject.find(params[:id])
-    @subject.destroy
+    @subjects = Subject.find(params[:id])
+    @subjects.delete
     redirect_to user_subjects_path
   end
 
