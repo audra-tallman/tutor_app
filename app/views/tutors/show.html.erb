@@ -11,11 +11,12 @@
 <% if current_user.admin %>
   <p><%= link_to "Edit Tutor", edit_tutor_path(@tutor) %></p>
   <p><%= link_to "Delete Tutor", tutor_path(@tutor), :data => {:confirm => "Are you sure?", :method => "delete"} %></p>
-<% else %>
-  <%= form_tag("/subjects", method: "post") do %>
-    <%= hidden_field_tag :tutor_id, @tutor.id %>
-    <%= hidden_field_tag :tutor_subject, @tutor.subject %>
-    <%= button_tag "Request Tutoring" %>
+<% end %>
+  <% if !current_user.tutors.include?(@tutor) %>
+    <%= form_tag("/subjects", method: "post") do %>
+      <%= hidden_field_tag :tutor_id, @tutor.id %>
+      <%= hidden_field_tag :tutor_subject, @tutor.subject %>
+      <%= button_tag "Request Tutoring" %>
   <% end %>
 <% end %>
 <br>

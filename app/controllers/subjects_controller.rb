@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
   def index
     if current_user.subjects !=[]
       @user_subjects = current_user.subjects
-      @subjects = Subjects.all
+      @subjects = Subject.all
       @user_id = current_user.id
     else
       flash[:error] = "You need to sign up for a subject tutor before you can view your subjects."
