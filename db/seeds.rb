@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# :username, :name, :email, :password, :admin, :provider, :uid)
 
+User.create(id: '1', name: 'Audra', email: 'audra@example.com', password: 'testing', admin: true, provider: 'null', uid:  'null')
 
 DATA = {
   :tutor_keys =>
@@ -14,7 +16,7 @@ DATA = {
     ["Darth Vader", "male", "vader@example.com", "History", "Come to the dark side."],
     ["Princess Leia", "female", "leia@example.com", "Government", "Not so helpless princess."],
     ["Luke Skywalker", "male", "luke@example.com", "Technology", "Even a whiner can be a hero."],
-    ["Chewbacca", "male", "chewy@example.com", "Foreign Languages", "Sasquatch ain't got nothing on me."],
+    ["Chewbacca", "male", "chewy@example.com", "Languages", "Sasquatch ain't got nothing on me."],
     ["Obi-Wan Kenobi", "male", "aka.ben@example.com", "Science", "Jedi master to legends."],
     ["Han Solo", "male", "solo@example.com", "Geography", "Smuggler turned hero."],
     ["C3P0", "male", "golden@example.com", "Math", "I overanalyze everything."],
@@ -23,14 +25,14 @@ DATA = {
   :subject_keys =>
     ["name", "user_id", "tutor_id"],
   :subjects => [
-    ["History", nil, 1],
-    ["Government", nil, 2],
-    ["Technology", nil, 3],
-    ["Foreign Languages", nil, 4],
-    ["Science", nil, 5],
-    ["Geography", nil, 6],
-    ["Math", nil, 7],
-    ["English", nil, 8]
+    ["History", 1, 1],
+    ["Government", 1, 2],
+    ["Technology", 1, 3],
+    ["Foreign Languages", 1, 4],
+    ["Science", 1, 5],
+    ["Geography", 1, 6],
+    ["Math", 1, 7],
+    ["English", 1, 8]
     ]
   }
 
