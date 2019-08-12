@@ -1,13 +1,20 @@
 <h1> Tutors </h1>
-<p> Click on a name to view that tutor's profile. </p>
 <% if current_user.admin %>
-  <%= render partial: 'admin', locals: {tutors: @tutors} %>
-<% else %>
-<ul>
-  <% @tutors.each do |tutor| %>
-    <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
-  <% end %>
-</ul>
+  <button id ="click-me"> Quick View Tutor Requests </button>
+    <div id="selected-tutor"></div>
+  <%= button_to "Add a New Tutor", new_tutor_path, method: :get %>
+    <ul>
+      <% @tutors.each do |tutor| %>
+        <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p> Click on a name to view that tutor's profile. </p>
+      <ul>
+        <% @tutors.each do |tutor| %>
+          <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
+        <% end %>
+      </ul>
 <% end %>
 
 <p>View Tutors by Gender:</p>

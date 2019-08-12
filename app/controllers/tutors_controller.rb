@@ -1,4 +1,3 @@
-require 'pry'
 class TutorsController < ApplicationController
 
   before_action :find_tutor, only: [:show, :edit, :update]
@@ -10,7 +9,10 @@ class TutorsController < ApplicationController
       @tutors = Tutor.send_chain(methods)
     else
       @tutors = Tutor.all
-    # @subject_tutor = Tutor.subject(params[:name])
+      respond_to do |f|
+        f.html {render :index}
+        f.json {render json: @tutors}
+      end
     end
   end
 
@@ -30,6 +32,10 @@ class TutorsController < ApplicationController
   def show
     @tutor= Tutor.find(params[:id])
     Tutor.subject(params[:name])
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @tutor}
+    end
   end
 
   def edit
