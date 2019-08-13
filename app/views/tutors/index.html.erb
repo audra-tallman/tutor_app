@@ -1,7 +1,8 @@
 <h1> Tutors </h1>
+<div id="info-spot"></div>
 <% if current_user.admin %>
-  <button id ="click-me"> Quick View Tutor Requests </button>
-    <div id="selected-tutor"></div>
+  <button id ="tutor-requests"> Quick View Tutor Requests </button>
+    <div id="all-tutors"></div>
   <%= button_to "Add a New Tutor", new_tutor_path, method: :get %>
     <ul>
       <% @tutors.each do |tutor| %>

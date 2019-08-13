@@ -4,23 +4,51 @@ $(function(){
 })
 
 function enableListeners(){
-  $("button#click-me").on('click', function (event) {
+  $("button#tutor-requests").on('click', function (event) {
     event.preventDefault
     console.log("worked")
-    getTutor()
+    getTutors()
   })
 }
 
-function getTutor(){
-  fetch('http://localhost:3000/tutors')
+function getTutors(){
+  fetch('http://localhost:3000/tutors.json')
   .then(res => res.json())
   .then(tutors => {
-    $("#selected-tutor").html('')
+    $("#all-tutors").html('')
     tutors.forEach(tutor => {
       let newTutor = new Tutor(tutor)
-      let tutorHTML = newTutor.formatIndex()
-      $("#selected-tutor").append(tutorHTML)
+      let tutorsHTML = newTutor.formatIndex()
+      $("#all-tutors").append(tutorsHTML)
       })
+      addLinkListener()
+      // $("button#tutor-info").addEventListener("click", function() {alert("Bam")})
+    })
+}
+function addLinkListener() {
+  let links = $("a#tutor-info")
+  for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", showTutor)
+  }
+}
+
+// function addEventListener(){
+//  $("#show_link").on('click', function (event) {
+//     event.preventDefault
+//     console.log("bazinga")
+//     showTutor()
+//   })
+// }
+
+  function showTutor(event){
+    event.preventDefault()
+    let id = event.currentTarget.dataset.id
+    fetch(`http://localhost:3000/tutors/${id}.json`)
+    .then(res => res.json())
+    .then(tutor => {
+      let newTutor = new Tutor(tutor)
+      let tutorHTML = newTutor.formatShow()
+      $("#info").append(tutorHTML)
     })
   }
 
@@ -36,64 +64,45 @@ class Tutor {
     this.users = tutor.users
   }
 
-  // formatIndex() {
-  //   // let tutorHTML = `
-  //   // <a href= "/tutors/${this.id}" data-id="${this.id}" class="show_link"><h3>${this.name}</h3></a>
-  //   // `
-  //   // return tutorHTML
-  //
-  //   let subjects = this.subjects.map(subject => {
-  //     return(`
-  //       <ul>
-  //         <li>${subject.name}</li>
-  //       </ul>
-  //       `)
-  //   }).join('')
-  //
-  //   // let users = this.users.map(user => {
-  //   //   return(`
-  //   //     <ul>
-  //   //       <li>${user.name}</li>
-  //   //     </ul>
-  //   //     `)
-  //   // }).join('')
-  //
-  //   return(`
-  //   <div>
-  //     <a href= "/tutors/${this.id}" data-id="${this.id}" class="show_link"> <h3>${this.name}</h3></a>
-  //     <p> Subjects: ${subjects}</p>
-  //   </div>
-  //   `)
-  // }
-}
+  formatIndex() {
 
-Tutor.prototype.formatIndex = function() {
-  // let tutorHTML = `
-  // <a href= "/tutors/${this.id}" data-id="${this.id}" class="show_link"><h3>${this.name}</h3></a>
-  // `
-  // return tutorHTML
+    let subjects = this.subjects.map(subject => {
+      return(`
+        <ul>
+          <li>${subject.name}</li>
+        </ul>
+        `)
+    }).join('')
 
-  let subjects = this.subjects.map(subject => {
-    return(`
-      <ul>
-        <li>${subject.name}</li>
-      </ul>
-      `)
-  }).join('')
+    let users = this.users.map(user => {
+      return(`
+        <ul>
+          <li>${user.name}</li>
+        </ul>
+        `)
+    }).join('')
 
-  let users = this.users.map(user => {
-    return(`
-      <ul>
-        <li>${user.name}</li>
-      </ul>
-      `)
-  }).join('')
+    let tutorsHTML = `
+      <div>
+        <a href="/tutors/${this.id}" id="tutor-info" data-id="${this.id}"> <h3>${this.name}</h3></a>
+        <p> Subject: ${this.subject}</p>
+        <p> Tutoring has been requested by: ${users}</p>
+      </div>
+      <div id="info"></div>`
+    return tutorsHTML
+    // <button id="tutor-info"> Tutor Info
+  }
 
-  return(`
-  <div>
-    <a href= "/tutors/${this.id}" data-id="${this.id}" class="show_link"> <h3>${this.name}</h3></a>
-    <p> Subjects: ${subjects}</p>
-    <p> Users: ${users}</p>
-  </div>
-  `)
+
+
+  formatShow() {
+    let tutorHTML = `
+      <div>
+      <p> Name: ${this.name}</p>
+      <p> Email: ${this.email}</p>
+      <p> Bio: ${this.bio}</p>
+      </div>
+      `
+      return tutorHTML
+  }
 }
