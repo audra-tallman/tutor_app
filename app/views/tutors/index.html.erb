@@ -1,9 +1,10 @@
 <h1> Tutors </h1>
+<div id="form"></div>
 <div id="info-spot"></div>
 <% if current_user.admin %>
-  <button id ="tutor-requests"> Quick View Tutor Requests </button>
+  <button id="tutor-requests"> Quick View Tutor Requests </button>
     <div id="all-tutors"></div>
-  <%= button_to "Add a New Tutor", new_tutor_path, method: :get %>
+  <button id="new-tutor"> Add a New Tutor </button>
     <ul>
       <% @tutors.each do |tutor| %>
         <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
