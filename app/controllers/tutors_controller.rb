@@ -1,7 +1,7 @@
 class TutorsController < ApplicationController
 
   before_action :find_tutor, only: [:show, :edit, :update]
-  before_action :admin_only, except: [:index, :show]
+  # before_action :admin_only, except: [:index, :show]
 
   def index
     if params[:tutor]
@@ -21,11 +21,11 @@ class TutorsController < ApplicationController
   end
 
   def create
-    @tutor = Tutor.create(tutor_params)
-    if @tutor.save
-      redirect_to tutors_path
+    tutor = Tutor.create(tutor_params)
+    if tutor.save
+        render json: tutor
     else
-      render 'new'
+      puts "handle error"
     end
   end
 

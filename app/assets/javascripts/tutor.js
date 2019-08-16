@@ -12,36 +12,38 @@ function enableListeners(){
   $("button#new-tutor").on('click', function(event) {
     event.preventDefault
     console.log("woohoo")
-    newTutor()
+    displayNewForm()
   })
 }
 
 function displayNewForm(){
-  let tutorFormDiv = document.getElementById('new-tutor-form')
-  let html =`
-    <form onsubmit="newTutor(); return false;">
-      <label> Name: </label>
-      <input type="text" id="name"></br>
-      <label> Gender: </label>
-      <input type="text" id="gender"></br>
-      <label> Subject: </label>
-      <input type="text" id="subject"></br>
-      <label> Bio: </label>
-      <input type="text" id="bio"></br>
-      <label> Email: </label>
-      <input type="text" id="email"</br>
-      <input type="submit" value="Add Tutor">
-    </form>
-    `
+  $("#new-tutor-form").html('')
+    let createTutorHTML = `
+      <form onsubmit="createTutor(); return false;">
+        <h4> Create a New Tutor </h4>
+        <label> Name: </label>
+        <input type="text" id="name"></br>
+        <label> Gender: </label>
+        <input type="text" id="gender"></br>
+        <label> Subject: </label>
+        <input type="text" id="subject"></br>
+        <label> Bio: </label>
+        <input type="text" id="bio"></br>
+        <label> Email: </label>
+        <input type="text" id="email"</br>
+        <input type="submit" value="Add Tutor">
+      </form>
+      `
+    $("#new-tutor-form").html(createTutorHTML)
 }
 
-function newTutor() {
+function createTutor() {
   const tutor = {
     name: document.getElementById("name").value,
     gender: document.getElementById("gender").value,
     subject: document.getElementById("subject").value,
     bio: document.getElementById("bio").value,
-    email: document.getElementbyId("email").value
+    email: document.getElementById("email").value
   }
   fetch('http://localhost:3000/tutors', {
     method: 'POST',
@@ -50,13 +52,10 @@ function newTutor() {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
-  }).then(resp => resp.json())
+  })
+  .then(res => res.json())
   .then(tutor => {
-    tutor =  new Tutor(tutor)
-    $("#all-tutors").html('')
-      document.querySelector("#form").innerHTML += newb
-      let tutorFormDiv = document.getElementById('new-tutor-form');
-      tutorFormDiv.innerHTML = '';
+    console.log(tutor)
   })
 }
 
@@ -130,9 +129,9 @@ class Tutor {
         <p> Subject: ${this.subject}</p>
         <p> Tutoring has been requested by: ${users}</p>
       </div>
-      <div id="info"></div>`
+      <div id="info"></div>
+      `
     return tutorsHTML
-    // <button id="tutor-info"> Tutor Info
   }
 
   formatShow() {
