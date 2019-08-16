@@ -4,6 +4,11 @@ $(function(){
 })
 
 function enableListeners(){
+  $("button#tutor-list").on('click', function(event) {
+    event.preventDefault
+    console.log("woot")
+    listTutors()
+  })
   $("button#tutor-requests").on('click', function(event) {
     event.preventDefault
     console.log("worked")
@@ -16,21 +21,44 @@ function enableListeners(){
   })
 }
 
-function displayNewForm(){
+function clearPage(){
+  $("#list").html('')
+  $("#all-tutors").html('')
+  $("#new-tutor-form").html('')
+  $("#info-spot").html('')
+}
+
+function listTutors() {
+  fetch('http://localhost:3000/tutors.json')
+  .then(res => res.json())
+  .then(tutors => {
+    clearPage()
+    tutors.forEach(tutor => {
+      let newTutor = new Tutor(tutor)
+      let listHTML = newTutor.formatList()
+      $("#all-tutors").append(listHTML)
+    })
+    addLinkListener()
+  })
+}
+
+function displayNewForm() {
+  clearPage()
   $("#new-tutor-form").html('')
     let createTutorHTML = `
       <form onsubmit="createTutor(); return false;">
-        <h4> Create a New Tutor </h4>
+        <h3> Create a New Tutor </h3>
+        <i>Please follow directions below each field.</i></br></br>
         <label> Name: </label>
-        <input type="text" id="name"></br>
+        <input type="text" id="name"></br>(Cannot be blank)</br></br>
         <label> Gender: </label>
-        <input type="text" id="gender"></br>
+        <input type="text" id="gender"></br>(Type as male or female)</br></br>
         <label> Subject: </label>
-        <input type="text" id="subject"></br>
+        <input type="text" id="subject"></br>(Must list single subject)</br></br>
         <label> Bio: </label>
-        <input type="text" id="bio"></br>
+        <input type="text" id="bio"></br>(Cannot exeed 250 characters)</br></br>
         <label> Email: </label>
-        <input type="text" id="email"</br>
+        <input type="text" id="email"></br>(Must be unique)</br></br>
         <input type="submit" value="Add Tutor">
       </form>
       `
@@ -57,16 +85,17 @@ function createTutor() {
   .then(tutor => {
     console.log(tutor)
   })
+  listTutors()
 }
 
-function getTutors(){
+function getTutors() {
   fetch('http://localhost:3000/tutors.json')
   .then(res => res.json())
   .then(tutors => {
-    $("#all-tutors").html('')
+    clearPage()
     tutors.forEach(tutor => {
       let newTutor = new Tutor(tutor)
-      let tutorsHTML = newTutor.formatIndex()
+      let tutorsHTML = newTutor.formatRequests()
       $("#all-tutors").append(tutorsHTML)
       })
       addLinkListener()
@@ -80,13 +109,14 @@ function addLinkListener() {
   }
 }
 
-function showTutor(event){
+function showTutor(event) {
   event.preventDefault()
   let id = event.currentTarget.dataset.id
   fetch(`http://localhost:3000/tutors/${id}.json`)
   .then(res => res.json())
   .then(tutor => {
     $("#info-spot").html('')
+    $("#new-tutor-form").html('')
     let newTutor = new Tutor(tutor)
     let tutorHTML = newTutor.formatShow()
     $("#info-spot").append(tutorHTML)
@@ -105,8 +135,14 @@ class Tutor {
     this.users = tutor.users
   }
 
-  formatIndex() {
+  formatList() {
+    let listHTML = `
+      <a href="/tutors/${this.id}" id="tutor-info" data-id="${this.id}"> <h3>${this.name}</h3></a>
+    `
+    return listHTML
+  }
 
+  formatRequests() {
     let subjects = this.subjects.map(subject => {
       return(`
         <ul>
@@ -114,7 +150,6 @@ class Tutor {
         </ul>
         `)
     }).join('')
-
     let users = this.users.map(user => {
       return(`
         <ul>
@@ -125,11 +160,10 @@ class Tutor {
 
     let tutorsHTML = `
       <div>
-        <a href="/tutors/${this.id}" id="tutor-info" data-id="${this.id}"> <h3>${this.name}</h3></a>
-        <p> Subject: ${this.subject}</p>
+        <h3>${this.name} - <small>${this.subject}</small></h3>
         <p> Tutoring has been requested by: ${users}</p>
       </div>
-      <div id="info"></div>
+      <div id="info-spot"></div>
       `
     return tutorsHTML
   }
@@ -138,8 +172,10 @@ class Tutor {
     let tutorHTML = `
       <div>
       <h3> ${this.name}'s Personal Info </h3>
-      <p> Email: ${this.email}</p>
+      <p> Gender: ${this.gender}</p>
+      <p> Subject: ${this.subject}</p>
       <p> Bio: ${this.bio}</p>
+      <p> Email: ${this.email}</p>
       </div>
       `
     return tutorHTML
