@@ -1,7 +1,15 @@
 class TutorsController < ApplicationController
 
   before_action :find_tutor, only: [:show, :edit, :update]
-  # before_action :admin_only, except: [:index, :show]
+
+  def search
+    if params[:tutor]
+      methods = params[:tutor][:methods]
+      @tutors = Tutor.send_chain(methods)
+    else
+      @tutors = Tutor.all
+    end
+  end
 
   def index
     if params[:tutor]
@@ -25,7 +33,8 @@ class TutorsController < ApplicationController
     if tutor.save
         render json: tutor
     else
-      puts "handle error"
+      flash[:error] = "Please correct Errors"
+      render :index
     end
   end
 

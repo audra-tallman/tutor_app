@@ -1,0 +1,20 @@
+<h1> Tutors </h1>
+
+<p>View Tutors by Gender:</p>
+
+<%= form_tag(search_page_path, method: :get) do %>
+  Female <%= check_box_tag "tutor[methods][]", "female" %></br>
+  Male <%= check_box_tag "tutor[methods][]", "male" %></br>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<p> Click on a name to view that tutor's profile. </p>
+    <ul>
+      <% @tutors.each do |tutor| %>
+        <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
+      <% end %>
+    </ul>
+
+<%= link_to "View Your Tutoring Requests", subjects_path %></br>
+<%= link_to "View All Subjects", root_url %></br>
+<%= link_to "View Tutors", tutors_path %>
