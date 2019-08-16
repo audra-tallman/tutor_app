@@ -1,31 +1,15 @@
 <h1> Tutors </h1>
-<div id="new-tutor-form"></div>
-<div id="info-spot"></div>
-<% if current_user.admin %>
-  <button id="tutor-requests"> Quick View Tutor Requests </button>
-    <div id="all-tutors"></div>
+    <div id="info-spot"></div>
+  <button id="tutor-list"> Tutor List </button>
+  <button id="tutor-requests"> Tutor Requests </button>
   <button id="new-tutor"> Add a New Tutor </button>
-    <ul>
-      <% @tutors.each do |tutor| %>
-        <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p> Click on a name to view that tutor's profile. </p>
-      <ul>
-        <% @tutors.each do |tutor| %>
-          <li><%= link_to "#{tutor.name}", tutor_path(tutor.id) %></li>
-        <% end %>
-      </ul>
-<% end %>
+    <div id="list"></div>
+    <div id="all-tutors"></div>
+    <div id="new-tutor-form"></div>
+    </br>
+    </br>
 
-<p>View Tutors by Gender:</p>
-
-<%= form_tag(tutors_path, method: :get) do %>
-  Female <%= check_box_tag "tutor[methods][]", "female" %>
-  Male <%= check_box_tag "tutor[methods][]", "male"  %>
-  <%= submit_tag 'Search', name: nil %>
-<% end %>
-
-<p><%= link_to "View Subjects", root_url %></p>
-<p><%= link_to "View All Tutors", tutors_path %></p>
+<%= link_to "Seach Tutors by Gender", search_page_path %>
+</br>
+</br>
+<%= link_to "View Subjects", root_url %>
